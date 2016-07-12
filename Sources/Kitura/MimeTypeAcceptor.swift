@@ -44,7 +44,11 @@ extension RouterRequest {
         ///
         private static func parse(mediaType type: String) -> MimeTypeWithQValue {
             var finishedPair = ("", 1.0)
-            let trimmed = type.trimmingCharacters(in: NSCharacterSet.whitespaces())
+            #if os(Linux)
+                let trimmed = type.trimmingCharacters(in: NSCharacterSet.whitespaces())
+            #else
+                let trimmed = type.trimmingCharacters(in: NSCharacterSet.whitespaces)
+            #endif
             let components = trimmed.characters.split(separator: ";").map(String.init)
 
             if let mediaType = components.first {

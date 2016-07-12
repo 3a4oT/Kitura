@@ -52,7 +52,7 @@ extension StaticFileServer {
                 #if os(Linux)
                     let date = fileAttributes[NSFileModificationDate] as? NSDate
                 #else
-                    let date = fileAttributes[FileAttributeKey.modificationDate.rawValue] as? NSDate
+                    let date = fileAttributes[FileAttributeKey.modificationDate] as? NSDate
                 #endif
                 if let date = date {
                     response.headers["Last-Modified"] = SPIUtils.httpDate(date)
@@ -67,8 +67,8 @@ extension StaticFileServer {
                     let date = fileAttributes[NSFileModificationDate] as? NSDate
                     let size = fileAttributes[NSFileSize] as? Int
                 #else
-                    let date = fileAttributes[FileAttributeKey.modificationDate.rawValue] as? NSDate
-                    let size = fileAttributes[FileAttributeKey.size.rawValue] as? Int
+                    let date = fileAttributes[FileAttributeKey.modificationDate] as? NSDate
+                    let size = fileAttributes[FileAttributeKey.size] as? Int
                 #endif
 
                 if let date = date, let size = size {

@@ -223,7 +223,7 @@ extension Router : ServerDelegate {
 #if os(Linux)
         let fileManager = NSFileManager.defaultManager()
 #else
-        let fileManager = FileManager.default()
+        let fileManager = FileManager.default
 #endif
         let potentialResource = getResourcePathBasedOnSourceLocation(for: resource)
 

@@ -145,7 +145,11 @@ extension StaticFileServer {
             }
 
             do {
-                let fileAttributes : CustomResponseHeaderAttributes = try FileManagerType().attributesOfItem(atPath: filePath)
+                #if os(Linux)
+                    let fileAttributes : CustomResponseHeaderAttributes = try FileManagerType().attributesOfItem(atPath: filePath)
+                #else
+                    let fileAttributes : CustomResponseHeaderAttributes = try FileManagerType().attributesOfItem(atPath: filePath)
+                #endif
                 responseHeadersSetter?.setCustomResponseHeaders(response: response,
                                                                 filePath: filePath,
                                                                 fileAttributes: fileAttributes)
